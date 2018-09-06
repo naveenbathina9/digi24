@@ -253,9 +253,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeworkController.cs" />
     <Compile Include="Controllers\MasterDataController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -338,6 +342,10 @@
     <ProjectReference Include="..\Digi24.BusinessLogic\Digi24.BusinessLogic.csproj">
       <Project>{CF822957-AEDD-4D6E-8D00-86ABF97D1092}</Project>
       <Name>Digi24.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Digi24.Entities\Digi24.Entities.csproj">
+      <Project>{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}</Project>
+      <Name>Digi24.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Digi24.Repository\Digi24.Repository.csproj">
       <Project>{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}</Project>

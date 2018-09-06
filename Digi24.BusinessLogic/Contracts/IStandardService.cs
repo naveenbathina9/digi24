@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Digi24.BusinessLogic.Contracts
 {
-    public interface IAppointmentService
+    public interface IStandardService
     {
-        ServiceResponse<bool> CreateAppointment(AppointmentEntity appointmentData);
+        ServiceResponse<bool> Create(StandardEntity standardData);
     }
 }
