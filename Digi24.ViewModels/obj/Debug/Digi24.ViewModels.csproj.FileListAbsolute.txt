@@ -1,0 +1,4 @@
+D:\Personal\Digi24\Digi24.ViewModels\bin\Debug\Digi24.ViewModels.dll
+D:\Personal\Digi24\Digi24.ViewModels\bin\Debug\Digi24.ViewModels.pdb
+D:\Personal\Digi24\Digi24.ViewModels\obj\Debug\Digi24.ViewModels.dll
+D:\Personal\Digi24\Digi24.ViewModels\obj\Debug\Digi24.ViewModels.pdb

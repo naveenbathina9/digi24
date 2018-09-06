@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.API", "Digi24.API\Digi24.API.csproj", "{3CDAD475-E65F-4C32-85F7-D0B6F87B5429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.Common", "Digi24.Common\Digi24.Common.csproj", "{0243F764-31C1-4F35-B41B-666E06AABA8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.Repository", "Digi24.Repository\Digi24.Repository.csproj", "{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.BusinessLogic", "Digi24.BusinessLogic\Digi24.BusinessLogic.csproj", "{CF822957-AEDD-4D6E-8D00-86ABF97D1092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.ViewModels", "Digi24.ViewModels\Digi24.ViewModels.csproj", "{31A3EC74-0228-49F7-B06C-1D70BA93B052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digi24.Entities", "Digi24.Entities\Digi24.Entities.csproj", "{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CDAD475-E65F-4C32-85F7-D0B6F87B5429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CDAD475-E65F-4C32-85F7-D0B6F87B5429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CDAD475-E65F-4C32-85F7-D0B6F87B5429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CDAD475-E65F-4C32-85F7-D0B6F87B5429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0243F764-31C1-4F35-B41B-666E06AABA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0243F764-31C1-4F35-B41B-666E06AABA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0243F764-31C1-4F35-B41B-666E06AABA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0243F764-31C1-4F35-B41B-666E06AABA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3092FF28-1BED-483B-B0DF-1AF85F46B4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF822957-AEDD-4D6E-8D00-86ABF97D1092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF822957-AEDD-4D6E-8D00-86ABF97D1092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF822957-AEDD-4D6E-8D00-86ABF97D1092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF822957-AEDD-4D6E-8D00-86ABF97D1092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A3EC74-0228-49F7-B06C-1D70BA93B052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A3EC74-0228-49F7-B06C-1D70BA93B052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A3EC74-0228-49F7-B06C-1D70BA93B052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A3EC74-0228-49F7-B06C-1D70BA93B052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0CD967-05A7-4234-95B6-D1E1BD8AA08A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
