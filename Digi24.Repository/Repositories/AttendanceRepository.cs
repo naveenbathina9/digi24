@@ -21,13 +21,14 @@ namespace Digi24.Repository.Repositories
             int result = -1;
             try
             {
-                //(int)_dbStore.ExecuteStoredProcedure("SP_CreateAttendance")
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteStoredProcedure("SP_CreateAttendance", dbParams);
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+            return result;
         }
 
         public bool Delete(object key)

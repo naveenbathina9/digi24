@@ -25,7 +25,7 @@ namespace Digi24.BusinessLogic.Services
             {
                 AttendanceEntity entity = new AttendanceEntity()
                 {
-                    AttendanceId = attendanceData.AttendanceId,
+                    //AttendanceId = attendanceData.AttendanceId,
                     AttendanceMode = attendanceData.AttendanceMode,
                     CapturedDate = attendanceData.CapturedDate,
                     Period = attendanceData.Period,
