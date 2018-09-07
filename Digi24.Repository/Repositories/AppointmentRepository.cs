@@ -16,6 +16,23 @@ namespace Digi24.Repository.Repositories
             _dbStore = dbStore;
         }
 
+        public int AcceptAppointment(int appointmentId)
+        {
+            int result = -1;
+            try
+            {
+                DbParameters dbParam = new DbParameters();
+                dbParam.Add("@AppointmentId", appointmentId);
+                result = (int)_dbStore.ExecuteStoredProcedure("[dbo].[SP_AcceptAppointment]", dbParam);
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         /// <summary>
         /// Creates appointment
         /// </summary>

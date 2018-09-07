@@ -35,6 +35,7 @@ namespace Digi24.API.App_Start
         {
             container.RegisterType<IExamTypeService, ExamTypeService>();
             container.RegisterType<ISubjectService, SubjectService>();
+            container.RegisterType<IStudentService, StudentService>();
         }
 
         private void RegisterRepositories()

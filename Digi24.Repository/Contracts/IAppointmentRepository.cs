@@ -13,6 +13,6 @@ namespace Digi24.Repository.Contracts
 
     public interface IAppointmentRepository : IRepository<AppointmentEntity>
     {
-
+        int AcceptAppointment(int appointmentId);
     }
 }

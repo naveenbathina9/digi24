@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Digi24.API.Controllers
 {
+    [RoutePrefix("api/Student")]
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
@@ -15,6 +16,8 @@ namespace Digi24.API.Controllers
             _studentService = studentService;
         }
 
+        [HttpPost]
+        [Route("CreateStudent")]
         public HttpResponseMessage CreateStudent(StudentEntity studentData)
         {
             try
@@ -27,6 +30,8 @@ namespace Digi24.API.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+
 
     }
 }
