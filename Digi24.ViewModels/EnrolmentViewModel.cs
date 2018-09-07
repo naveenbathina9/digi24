@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Digi24.Entities
+namespace Digi24.ViewModels
 {
-    public class EnrolmentEntity
+    public class EnrolmentViewModel
     {
         public int EnrolmentId { get; set; }
         public string StudentId { get; set; }
         public string StandardId { get; set; }
         public string AcademicYear { get; set; }
         public bool IsPromoted { get; set; }
-        public int RollNumber { get; set; }
+        public bool RollNumber { get; set; }
     }
 }

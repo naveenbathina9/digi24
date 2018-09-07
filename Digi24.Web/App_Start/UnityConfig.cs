@@ -1,37 +1,61 @@
-﻿using Digi24.BusinessLogic.Contracts;
+using System;
+using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
+using Unity.Resolution;
+using Digi24.BusinessLogic.Contracts;
 using Digi24.BusinessLogic.Services;
 using Digi24.Repository.Contracts;
 using Digi24.Repository.Infrastructure;
 using Digi24.Repository.Repositories;
-using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Web.Http.Dependencies;
-using Unity;
-using Unity.Exceptions;
-using Unity.Injection;
-using Unity.Lifetime;
-using Unity.Resolution;
 
-namespace Digi24.API.App_Start
+namespace Digi24.Web
 {
-    public class UnityResolver : IDependencyResolver
+    /// <summary>
+    /// Specifies the Unity configuration for the main container.
+    /// </summary>
+    public static class UnityConfig
     {
-        protected IUnityContainer container;
+        #region Unity Container
+        private static Lazy<IUnityContainer> container =
+          new Lazy<IUnityContainer>(() =>
+          {
+              var container = new UnityContainer();
+              RegisterTypes(container);
+              return container;
+          });
 
-        public UnityResolver(IUnityContainer container)
+        /// <summary>
+        /// Configured Unity Container.
+        /// </summary>
+        public static IUnityContainer Container => container.Value;
+        #endregion
+
+        /// <summary>
+        /// Registers the type mappings with the Unity container.
+        /// </summary>
+        /// <param name="container">The unity container to configure.</param>
+        /// <remarks>
+        /// There is no need to register concrete types such as controllers or
+        /// API controllers (unless you want to change the defaults), as Unity
+        /// allows resolving a concrete type even if it was not previously
+        /// registered.
+        /// </remarks>
+        public static void RegisterTypes(IUnityContainer container)
         {
-            if (container == null)
-            {
-                throw new ArgumentNullException("container");
-            }
-            this.container = container;
-            RegisterRepositories();
-            RegisterServices();
+            // NOTE: To load from web.config uncomment the line below.
+            // Make sure to add a Unity.Configuration to the using statements.
+            // container.LoadConfiguration();
+
+            // TODO: Register your type's mappings here.
+            // container.RegisterType<IProductRepository, ProductRepository>();
+
+            RegisterServices(container);
+            RegisterRepositories(container);
         }
 
 
-        private void RegisterServices()
+        private static void RegisterServices(IUnityContainer container)
         {
             container.RegisterType<IExamTypeService, ExamTypeService>();
             container.RegisterType<ISubjectService, SubjectService>();
@@ -41,7 +65,7 @@ namespace Digi24.API.App_Start
 
         }
 
-        private void RegisterRepositories()
+        private static void RegisterRepositories(IUnityContainer container)
         {
             container.RegisterType<IDbStore, DbStore>(new SingletonLifetimeManager(), new InjectionConstructor(typeof(string)));
             container.Resolve<IDbStore>(new ResolverOverride[]{
@@ -65,46 +89,6 @@ namespace Digi24.API.App_Start
             container.RegisterType<IStudentRepository, StudentRepository>();
             container.RegisterType<ISubjectRepository, SubjectRepository>();
             container.RegisterType<ITimetableRepository, TimetableRepository>();
-        }
-
-        public object GetService(Type serviceType)
-        {
-            try
-            {
-                return container.Resolve(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            try
-            {
-                return container.ResolveAll(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return new List<object>();
-            }
-        }
-
-        public IDependencyScope BeginScope()
-        {
-            var child = container.CreateChildContainer();
-            return new UnityResolver(child);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            container.Dispose();
         }
     }
 }

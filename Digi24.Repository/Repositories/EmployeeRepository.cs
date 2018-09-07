@@ -19,7 +19,17 @@ namespace Digi24.Repository.Repositories
 
         public int Create(EmployeeEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_CreateEmployee]", dbParams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
 
         public bool Delete(object key)
@@ -34,12 +44,37 @@ namespace Digi24.Repository.Repositories
 
         public EmployeeEntity GetById(object key)
         {
-            throw new NotImplementedException();
+            List<EmployeeEntity> employees = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@EmployeeId", key);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("[dbo].[SP_GetEmployeeById]", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    employees = resultDataSet.Tables[0].ToList<EmployeeEntity>(new EmployeeEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return employees?.FirstOrDefault();
         }
 
         public bool Update(EmployeeEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_UpdateEmployee]", dbParams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result > 0;
         }
     }
 }

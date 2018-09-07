@@ -19,7 +19,19 @@ namespace Digi24.Repository.Repositories
 
         public int Create(EnrolmentEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                dbParams.Remove("EnrolmentId", entity.EnrolmentId);
+                dbParams.Remove("IsPromoted", entity.IsPromoted);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_CreateEnrolment]", dbParams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
 
         public bool Delete(object key)
@@ -39,7 +51,19 @@ namespace Digi24.Repository.Repositories
 
         public bool Update(EnrolmentEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                dbParams.Remove("IsPromoted", entity.IsPromoted);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_UpdateEnrolment]", dbParams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result > 0;
         }
     }
 }
+

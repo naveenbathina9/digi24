@@ -13,7 +13,7 @@ using Unity.Injection;
 using Unity.Lifetime;
 using Unity.Resolution;
 
-namespace Digi24.API.App_Start
+namespace Digi24.Web.App_Start
 {
     public class UnityResolver : IDependencyResolver
     {

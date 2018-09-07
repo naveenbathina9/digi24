@@ -20,16 +20,11 @@ namespace Digi24.API.Controllers
 
         [HttpPost]
         [Route("CreateExamType")]
-        public HttpResponseMessage CreateExamType(CreateExamTypeViewModel examTypeData)
+        public HttpResponseMessage CreateExamType(String Title, String Description)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                var response =  _examTypeService.CreateExamType(examTypeData.Title, examTypeData.Description);
-
+                var response = _examTypeService.CreateExamType(Title, Description);
                 return Request.CreateResponse(HttpStatusCode.OK, response);
             }
             catch (Exception ex)
@@ -45,11 +40,6 @@ namespace Digi24.API.Controllers
             try
             {
                 var response = _examTypeService.GetAllExamTypes();
-                if(response == null)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Umable to process your request.");
-                }
-                
                 return Request.CreateResponse(HttpStatusCode.OK, response);
             }
             catch (Exception ex)
