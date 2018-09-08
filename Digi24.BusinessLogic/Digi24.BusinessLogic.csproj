@@ -48,6 +48,7 @@
     <Compile Include="Contracts\IFeesPaymentService.cs" />
     <Compile Include="Contracts\IHomeworkService.cs" />
     <Compile Include="Contracts\ILogService.cs" />
+    <Compile Include="Contracts\IMarksListService.cs" />
     <Compile Include="Contracts\IMarksService.cs" />
     <Compile Include="Contracts\INoticesService.cs" />
     <Compile Include="Contracts\IStandardService.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Services\FeesPaymentService.cs" />
     <Compile Include="Services\HomeworkService.cs" />
     <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\MarksListService.cs" />
     <Compile Include="Services\MarksService.cs" />
     <Compile Include="Services\NoticesService.cs" />
     <Compile Include="Services\StandardService.cs" />

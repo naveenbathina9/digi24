@@ -33,8 +33,8 @@ namespace Digi24.API.Controllers
         }
 
         [HttpPost]
-        [Route("GetMarksByEmployeeId")]
-        public HttpResponseMessage GetMarksByEmployeeId(String id)
+        [Route("GetMarksByStudentId")]
+        public HttpResponseMessage GetMarksByStudentId(String id)
         {
             try
             {

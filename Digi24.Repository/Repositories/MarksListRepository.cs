@@ -19,7 +19,17 @@ namespace Digi24.Repository.Repositories
 
         public int Create(MarksListEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var dbParams = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_InsertMarksList]", dbParams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
 
         public bool Delete(object key)
