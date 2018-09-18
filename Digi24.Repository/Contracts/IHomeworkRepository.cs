@@ -10,5 +10,7 @@ namespace Digi24.Repository.Contracts
     using Infrastructure;
     public interface IHomeworkRepository: IRepository<HomeWorkEntity>
     {
+
+        HomeWorkEntity GetByids(string SubjId, string standId, DateTime date);
     }
 }

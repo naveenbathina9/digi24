@@ -19,7 +19,17 @@ namespace Digi24.Repository.Repositories
 
         public int Create(ExaminationEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                parameters.Remove("ExamimationId", entity.ExamimationId);
+                var result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_InsertExamimation", parameters);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool Delete(object key)
@@ -34,12 +44,79 @@ namespace Digi24.Repository.Repositories
 
         public ExaminationEntity GetById(object key)
         {
-            throw new NotImplementedException();
+            List<ExaminationEntity> examination = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@ExamimationId", key);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetExamimationByExamType", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    examination = resultDataSet.Tables[0].ToList<ExaminationEntity>(new ExaminationEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return examination?.FirstOrDefault();
+        }
+
+        public ExaminationEntity GetExamByAcademicYear(int AcademicYear)
+        {
+            List<ExaminationEntity> examination = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@AcademicYear", AcademicYear);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetExamimationByAcademicYear", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    examination = resultDataSet.Tables[0].ToList<ExaminationEntity>(new ExaminationEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return examination?.FirstOrDefault();
+        }
+
+        public ExaminationEntity GetExamByExamType(int ExamTypeId)
+        {
+            List<ExaminationEntity> examination = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@ExamTypeId", ExamTypeId);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetExamimationByExamType", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    examination = resultDataSet.Tables[0].ToList<ExaminationEntity>(new ExaminationEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return examination?.FirstOrDefault();
         }
 
         public bool Update(ExaminationEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                //parameters.Remove("ExaminationId", entity.ExaminationId);
+                //parameters.Remove("AppointmentId", entity.AppointmentId);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_UpdateExamimation", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result > 0;
         }
     }
 }

@@ -37,5 +37,10 @@ namespace Digi24.BusinessLogic.Services
 
             return response;
         }
+
+        public ServiceResponse<bool> UpdateMarksList(MarksListEntity marksListEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

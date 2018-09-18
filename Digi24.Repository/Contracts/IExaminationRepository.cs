@@ -10,5 +10,7 @@ namespace Digi24.Repository.Contracts
     using Infrastructure;
     public interface IExaminationRepository : IRepository<ExaminationEntity>
     {
+        ExaminationEntity GetExamByExamType(int ExamimationId);
+        ExaminationEntity GetExamByAcademicYear(int ExamimationId);
     }
 }

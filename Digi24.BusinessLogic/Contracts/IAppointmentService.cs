@@ -10,5 +10,9 @@ namespace Digi24.BusinessLogic.Contracts
     public interface IAppointmentService
     {
         ServiceResponse<bool> CreateAppointment(AppointmentEntity appointmentData);
+        ServiceResponse<AppointmentEntity> GetAppointmentById(int id);
+        ServiceResponse<bool> AcceptAppointment(int id);
+        ServiceResponse<bool> RejectAppointment(int id);
+        ServiceResponse<bool> UpdateAppointment(AppointmentEntity id);
     }
 }

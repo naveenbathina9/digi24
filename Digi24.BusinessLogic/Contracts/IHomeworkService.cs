@@ -10,5 +10,7 @@ namespace Digi24.BusinessLogic.Contracts
     public interface IHomeworkService
     {
         ServiceResponse<bool> CreateHomework(HomeWorkEntity homeworkData);
+        ServiceResponse<bool> UpdateHomeWork(HomeWorkEntity HomeWorkData);
+        ServiceResponse<HomeWorkEntity> GetHomeWorkById(string SubjId, string standId, DateTime date);
     }
 }

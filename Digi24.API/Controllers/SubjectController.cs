@@ -9,28 +9,27 @@ using System.Web.Http;
 
 namespace Digi24.API.Controllers
 {
-    [RoutePrefix("api/Appointment")]
-    public class AppointmentController : ApiController
+    [RoutePrefix("api/SubjectMaster")]
+    public class SubjectController : ApiController
     {
-        private readonly IAppointmentService _appointmentService;
-        public AppointmentController(IAppointmentService appointmentService)
+        private readonly ISubjectService _subjectService;
+        public SubjectController(ISubjectService subjectService)
         {
-            _appointmentService = appointmentService;
+            _subjectService = subjectService;
         }
 
 
 
-
         [HttpPost]
-        [Route("CreateAppointment")]
-        public HttpResponseMessage CreateAppointment(AppointmentEntity appointmentData)
+        [Route("CreateSubject")]
+        public HttpResponseMessage CreateSubject(string id1, string id2)
         {
             ServiceResponse<bool> response = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    response = _appointmentService.CreateAppointment(appointmentData);
+                    response = _subjectService.CreateSubject(id1, id2);
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
                 else
@@ -44,47 +43,65 @@ namespace Digi24.API.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("AcceptAppointment")]
-        public HttpResponseMessage AcceptAppointment(int id)
-        {
-            try
-            {
-                var response = _appointmentService.AcceptAppointment(id);
-                return Request.CreateResponse(HttpStatusCode.OK, response);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-
-        [HttpPost]
-        [Route("RejectAppointment")]
-        public HttpResponseMessage RejectAppointment(int id)
-        {
-            try
-            {
-                var response = _appointmentService.RejectAppointment(id);
-                return Request.CreateResponse(HttpStatusCode.OK, response);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-
-
 
         [HttpGet]
-        [Route("GetAppointment")]
-        public HttpResponseMessage GetAppointmentById(int id)
+        [Route("GetSubjectById")]
+        public HttpResponseMessage GetSubjectById(string id)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var response = _appointmentService.GetAppointmentById(id);
+                    var response = _subjectService.GetSubjectById(id);
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetSubjectMaster")]
+        public HttpResponseMessage GetSubjectMaster(string id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var response = _subjectService.GetSubjectMaster(id);
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+
+        [HttpGet]
+        [Route("GetSubjectMasterById")]
+        public HttpResponseMessage GetSubjectMasterById(string id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var response = _subjectService.GetSubjectMasterById(id);
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
                 else
@@ -102,14 +119,14 @@ namespace Digi24.API.Controllers
 
 
         [HttpPost]
-        [Route("UpdateAttendance")]
-        public HttpResponseMessage UpdateAppointment(AppointmentEntity appointmentEntity)
+        [Route("UpdateSubject")]
+        public HttpResponseMessage UpdateSubject(SubjectEntity subjectData )
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var response = _appointmentService.UpdateAppointment(appointmentEntity);
+                    var response = _subjectService.UpdateSubject(subjectData);
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
                 else

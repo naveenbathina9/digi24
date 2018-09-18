@@ -16,6 +16,23 @@ namespace Digi24.Repository.Repositories
             _dbStore = dbStore;
         }
 
+        public int RejectAppointment(int appointmentId)
+        {
+            int result = -1;
+            try
+            {
+                DbParameters dbParam = new DbParameters();
+                dbParam.Add("@AppointmentId", appointmentId);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_RejectAppointment]", dbParam);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public int AcceptAppointment(int appointmentId)
         {
             int result = -1;
@@ -23,8 +40,8 @@ namespace Digi24.Repository.Repositories
             {
                 DbParameters dbParam = new DbParameters();
                 dbParam.Add("@AppointmentId", appointmentId);
-                result = (int)_dbStore.ExecuteStoredProcedure("[dbo].[SP_AcceptAppointment]", dbParam);
-                
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("[dbo].[SP_AcceptAppointment]", dbParam);
+
             }
             catch (Exception ex)
             {
@@ -43,7 +60,9 @@ namespace Digi24.Repository.Repositories
             try
             {
                 var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
-                var result = (int)_dbStore.ExecuteStoredProcedure("SP_CreateAppointment", parameters);
+                parameters.Remove("Status", entity.Status);
+                parameters.Remove("AppointmentId", entity.AppointmentId);
+                var result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_CreateAppointment", parameters);
                 return result;
             }
             catch (Exception ex)
@@ -130,7 +149,9 @@ namespace Digi24.Repository.Repositories
             try
             {
                 var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
-                result = (int)_dbStore.ExecuteStoredProcedure("SP_UpdateAppointment", parameters);
+                parameters.Remove("Status", entity.Status);
+                //parameters.Remove("AppointmentId", entity.AppointmentId);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_UpdateAppointment", parameters);
             }
             catch (Exception ex)
             {

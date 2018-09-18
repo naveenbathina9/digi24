@@ -39,6 +39,8 @@ namespace Digi24.API.App_Start
             container.RegisterType<IEmployeeService, EmployeeService>();
             container.RegisterType<IEnrolmentService, EnrolmentService>();
             container.RegisterType<IMarksService, MarksService>();
+            container.RegisterType<IAppointmentService, AppointmentService>();
+            container.RegisterType<IHomeworkService, HomeworkService>();
 
         }
 

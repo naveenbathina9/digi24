@@ -264,6 +264,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EnrolmentController.cs" />
+    <Compile Include="Controllers\ExaminationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeworkController.cs" />
     <Compile Include="Controllers\MarksController.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Controllers\MasterDataController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

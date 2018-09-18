@@ -33,5 +33,66 @@ namespace Digi24.BusinessLogic.Services
 
             return response;
         }
+
+        public ServiceResponse<StudentEntity> GetStudentById(int id)
+        {
+            ServiceResponse<StudentEntity> response = new ServiceResponse<StudentEntity>();
+            try
+            {
+                response.ResponseData = _studentRepository.GetById(id);
+                if (response.ResponseData != null)
+                    response.ResponseMessage = "Get Student By Id.";
+                else
+                    response.ResponseMessage = "Unable to get Student ById.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server error, Please try again.";
+                throw;
+            }
+            return response;
+        }
+
+        public ServiceResponse<StudentEntity> GetStudentByStandardId(string id)
+        {
+            ServiceResponse<StudentEntity> response = new ServiceResponse<StudentEntity>();
+            try
+            {
+                response.ResponseData = _studentRepository.GetStudentByStandardId(id);
+                if (response.ResponseData != null)
+                    response.ResponseMessage = "Get Student By Id.";
+                else
+                    response.ResponseMessage = "Unable to get Student ById.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server error, Please try again.";
+                throw;
+            }
+            return response;
+        }
+
+        public ServiceResponse<bool> UpdateStudent(StudentEntity id)
+        {
+            ServiceResponse<bool> response = new ServiceResponse<bool>();
+            try
+            {
+                var result = _studentRepository.Update(id);
+                response.ResponseData = result;
+                if (result)
+                    response.ResponseMessage = "Student data has been Updated.";
+                else
+                    response.ResponseMessage = "Error while Updating Student, Please try again.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server errror, Please try again.";
+            }
+
+            return response;
+        }
     }
 }

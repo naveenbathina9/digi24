@@ -44,6 +44,7 @@
     <Compile Include="Contracts\IAttendanceService.cs" />
     <Compile Include="Contracts\IEmployeeService.cs" />
     <Compile Include="Contracts\IEnrolmentService.cs" />
+    <Compile Include="Contracts\IExaminationService.cs" />
     <Compile Include="Contracts\IExamTypeService.cs" />
     <Compile Include="Contracts\IFeesPaymentService.cs" />
     <Compile Include="Contracts\IHomeworkService.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Services\AttendanceService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\EnrolmentService.cs" />
+    <Compile Include="Services\ExaminationService.cs" />
     <Compile Include="Services\ExamTypeService.cs" />
     <Compile Include="Services\FeesPaymentService.cs" />
     <Compile Include="Services\HomeworkService.cs" />

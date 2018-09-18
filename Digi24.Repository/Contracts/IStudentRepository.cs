@@ -10,5 +10,6 @@ namespace Digi24.Repository.Contracts
     using Infrastructure;
     public interface IStudentRepository : IRepository<StudentEntity>
     {
+        StudentEntity GetStudentByStandardId(string StandardId);
     }
 }

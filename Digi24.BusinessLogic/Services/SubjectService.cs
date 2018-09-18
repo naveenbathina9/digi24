@@ -28,7 +28,7 @@ namespace Digi24.BusinessLogic.Services
                 response.ResponseData = result > 0;
                 response.ResponseMessage = "Created new subject";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 response.ResponseMessage = "Unable to create subject, Please try again.";
                 response.IsFaulted = true;
@@ -36,6 +36,31 @@ namespace Digi24.BusinessLogic.Services
 
             return response;
         }
+
+        public ServiceResponse<SubjectEntity> GetSubjectById(string id)
+        {
+            ServiceResponse<SubjectEntity> response = new ServiceResponse<SubjectEntity>();
+            try
+            {
+                response.ResponseData = _subjectRepository.GetById(id);
+                if (response.ResponseData != null)
+                    response.ResponseMessage = "Get Appontment By Id.";
+                else
+                    response.ResponseMessage = "Unable to get Appointment ById.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server error, Please try again.";
+                throw;
+            }
+            return response;
+            //var entity = _appointmentRepository.GetById(id);
+            //return entity;
+        }
+
+       
+
 
         public ServiceResponse<List<Subject>> GetAllSubjects()
         {
@@ -52,7 +77,8 @@ namespace Digi24.BusinessLogic.Services
                     }
                     response.ResponseData = allSubjects;
                     response.ResponseMessage = "All subjects are retrieved.";
-                }else
+                }
+                else
                 {
                     response.ResponseMessage = "Subjects not found.";
                 }
@@ -61,6 +87,92 @@ namespace Digi24.BusinessLogic.Services
             {
                 response.ResponseMessage = "Unable to retrive subjects, Please try again.";
                 response.IsFaulted = true;
+            }
+
+            return response;
+        }
+
+        public ServiceResponse<SubjectEntity> GetSubjectMaster(string id)
+        {
+            ServiceResponse<SubjectEntity> response = new ServiceResponse<SubjectEntity>();
+            try
+            {
+                response.ResponseData = _subjectRepository.GetSubjMaster(id);
+                if (response.ResponseData != null)
+                    response.ResponseMessage = "Get Appontment By Id.";
+                else
+                    response.ResponseMessage = "Unable to get Appointment ById.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server error, Please try again.";
+                throw;
+            }
+            return response;
+            //var entity = _appointmentRepository.GetById(id);
+            //return entity;
+        }
+
+        public ServiceResponse<SubjectEntity> GetSubjectMasterById(string id)
+        {
+            ServiceResponse<SubjectEntity> response = new ServiceResponse<SubjectEntity>();
+            try
+            {
+                response.ResponseData = _subjectRepository.GetSubjMaster(id);
+                if (response.ResponseData != null)
+                    response.ResponseMessage = "Get Appontment By Id.";
+                else
+                    response.ResponseMessage = "Unable to get Appointment ById.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server error, Please try again.";
+                throw;
+            }
+            return response;
+            //var entity = _appointmentRepository.GetById(id);
+            //return entity;
+        }
+
+        public ServiceResponse<bool> UpdateSubject(SubjectEntity id)
+        {
+            ServiceResponse<bool> response = new ServiceResponse<bool>();
+            try
+            {
+                var result = _subjectRepository.Update(id);
+                response.ResponseData = result;
+                if (result)
+                    response.ResponseMessage = "Student data has been Updated.";
+                else
+                    response.ResponseMessage = "Error while Updating Student, Please try again.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server errror, Please try again.";
+            }
+
+            return response;
+        }
+
+        public ServiceResponse<bool> UpdateSubjectMaster(SubjectEntity id)
+        {
+            ServiceResponse<bool> response = new ServiceResponse<bool>();
+            try
+            {
+                var result = _subjectRepository.Update(id);
+                response.ResponseData = result;
+                if (result)
+                    response.ResponseMessage = "Student data has been Updated.";
+                else
+                    response.ResponseMessage = "Error while Updating Student, Please try again.";
+            }
+            catch (Exception)
+            {
+                response.IsFaulted = true;
+                response.ResponseMessage = "Internal server errror, Please try again.";
             }
 
             return response;

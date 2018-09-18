@@ -10,6 +10,6 @@ namespace Digi24.Repository.Contracts
 {
     public interface ISubjectRepository : IRepository<SubjectEntity>
     {
-
+        SubjectEntity GetSubjMaster(string StandardId);
     }
 }

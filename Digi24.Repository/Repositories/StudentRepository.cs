@@ -18,7 +18,16 @@ namespace Digi24.Repository.Repositories
         }
         public int Create(StudentEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                var result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_InsertStudents", parameters);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool Delete(object key)
@@ -33,12 +42,57 @@ namespace Digi24.Repository.Repositories
 
         public StudentEntity GetById(object key)
         {
-            throw new NotImplementedException();
+            List<StudentEntity> student = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@StudentId", key);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetStudentById", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    student = resultDataSet.Tables[0].ToList<StudentEntity>(new StudentEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return student?.FirstOrDefault();
+        }
+
+        public StudentEntity GetStudentByStandardId(string StandardId)
+        {
+            List<StudentEntity> student = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@StandardId", StandardId);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetStudentsByStandardId", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    student = resultDataSet.Tables[0].ToList<StudentEntity>(new StudentEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return student?.FirstOrDefault();
         }
 
         public bool Update(StudentEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_UpdateStudentById", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result > 0;
         }
     }
 }

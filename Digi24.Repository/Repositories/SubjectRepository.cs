@@ -25,6 +25,7 @@ namespace Digi24.Repository.Repositories
             try
             {
                 var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                parameters.Remove("SubjectId", entity.SubjectId);
                 result = (int)_dbStore.ExecuteNonQueryStoredProcedure(SP_CREATE_SUBJECT, parameters);
             }
             catch (Exception ex)
@@ -60,12 +61,78 @@ namespace Digi24.Repository.Repositories
 
         public SubjectEntity GetById(object key)
         {
-            throw new NotImplementedException();
+            List<SubjectEntity> subject = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@SubjectId", key);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetSubjectById", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    subject = resultDataSet.Tables[0].ToList<SubjectEntity>(new SubjectEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return subject?.FirstOrDefault();
+        }
+
+        //public SubjectEntity GetSubjMaster(object key)
+        //{
+        //    List<SubjectEntity> subject = null;
+        //    try
+        //    {
+        //        var parameters = new DbParameters();
+        //        parameters.Add("@StandardId", key); 
+        //         var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetSubjectMaster", parameters);
+        //        if (resultDataSet.Tables.Count > 0)
+        //        {
+        //            subject = resultDataSet.Tables[0].ToList<SubjectEntity>(new SubjectEntity());
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return subject?.FirstOrDefault();
+        //}
+
+        public SubjectEntity GetSubjMaster(string subj)
+        {
+
+            List<SubjectEntity> subject = null;
+            try
+            {
+                var parameters = new DbParameters();
+                parameters.Add("@StandardId", subj);
+                var resultDataSet = _dbStore.ExecuteStoredProcWithDataAdapter("SP_GetSubjectMaster", parameters);
+                if (resultDataSet.Tables.Count > 0)
+                {
+                    subject = resultDataSet.Tables[0].ToList<SubjectEntity>(new SubjectEntity());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return subject?.FirstOrDefault();
         }
 
         public bool Update(SubjectEntity entity)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            try
+            {
+                var parameters = ParameterUtility.CreateParameterFromClassObject(entity);
+                result = (int)_dbStore.ExecuteNonQueryStoredProcedure("SP_UpdateSubject", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result > 0;
         }
     }
 }
