@@ -328,7 +328,7 @@ namespace Digi24.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.MobileNumber, Email = model.Email, PhoneNumber = model.MobileNumber };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

@@ -34,9 +34,14 @@ namespace Digi24.API.Models
 
     public class RegisterBindingModel
     {
-        [Required]
+        //[Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name ="Mobile")]
+        [StringLength(10, ErrorMessage = "The {0} must be at {2} digits long.", MinimumLength = 10)]
+        public string MobileNumber { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -53,8 +58,8 @@ namespace Digi24.API.Models
     public class RegisterExternalBindingModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Mobile")]
+        public string MobileNumber { get; set; }
     }
 
     public class RemoveLoginBindingModel
